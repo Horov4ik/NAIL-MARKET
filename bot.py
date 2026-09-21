@@ -356,6 +356,19 @@ def main():
     logger.info("Бот запущено.")
     application.run_polling()
 
+from flask import Flask
+from threading import Thread
+
+web_app = Flask(__name__)
+
+@web_app.route("/")
+def home():
+    return "Бот працює"
+
+def run_web():
+    web_app.run(host="0.0.0.0", port=8080)
+
+Thread(target=run_web).start()
 
 if __name__ == "__main__":
     main()
